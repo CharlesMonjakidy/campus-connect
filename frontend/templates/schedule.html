@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Emploi du temps | Campus Connect{% endblock %}
+{% block content %}
+<section class="page-head">
+    <span class="eyebrow">ORGANISATION</span>
+    <h1>Emploi du temps 📅</h1>
+    <p>Ton planning universitaire au même endroit.</p>
+</section>
+<section class="table-card">
+    <div class="table-scroll">
+        <table>
+            <thead><tr><th>Jour</th><th>Horaire</th><th>Cours</th><th>Salle</th><th>Enseignant</th></tr></thead>
+            <tbody>
+            {% for item in schedule_items %}
+                <tr>
+                    <td><strong>{{ item.day }}</strong></td>
+                    <td>{{ item.start_time|time:"H:i" }} – {{ item.end_time|time:"H:i" }}</td>
+                    <td>{{ item.course }}</td>
+                    <td>{{ item.room|default:"—" }}</td>
+                    <td>{{ item.teacher|default:"—" }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5" class="empty">Aucun cours planifié.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

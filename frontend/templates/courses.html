@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Cours | Campus Connect{% endblock %}
+{% block content %}
+<section class="page-head">
+    <span class="eyebrow">RESSOURCES</span>
+    <h1>Mes cours 📚</h1>
+    <p>Retrouve les matières disponibles sur la plateforme.</p>
+</section>
+<section class="content-grid">
+{% for course in courses %}
+    <article class="course-card">
+        <div class="course-code">{{ course.code }}</div>
+        <h2>{{ course.title }}</h2>
+        <p>{{ course.description|default:"Aucune description pour le moment." }}</p>
+        <div class="course-meta"><span>👨‍🏫 {{ course.teacher }}</span></div>
+        {% if course.document_url %}<a class="text-link" href="{{ course.document_url }}" target="_blank" rel="noopener">Ouvrir le document →</a>{% endif %}
+    </article>
+{% empty %}
+    <div class="empty-card">Aucun cours n'a encore été ajouté. L'administrateur pourra les ajouter depuis /admin/.</div>
+{% endfor %}
+</section>
+{% endblock %}

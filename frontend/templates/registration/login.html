@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Connexion | Campus Connect{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-logo">C</div>
+        <span class="eyebrow">BIENVENUE</span>
+        <h1>Connexion</h1>
+        <p>Accède à ton espace étudiant.</p>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {% if form.non_field_errors %}<div class="form-error">{{ form.non_field_errors }}</div>{% endif %}
+            <label>Nom d'utilisateur{{ form.username }}</label>
+            <label>Mot de passe{{ form.password }}</label>
+            <button class="btn btn-primary full" type="submit">Se connecter →</button>
+        </form>
+        <p class="auth-footer">Pas encore de compte ? <a href="{% url 'register' %}">Créer un compte</a></p>
+    </div>
+</div>
+{% endblock %}

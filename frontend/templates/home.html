@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Campus Connect | Accueil{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <span class="eyebrow">🎓 LA PLATEFORME DES ÉTUDIANTS</span>
+        <h1>Tout ton campus.<br><span>Au même endroit.</span></h1>
+        <p>
+            Cours, annonces universitaires et emploi du temps réunis dans une
+            plateforme simple, moderne et accessible.
+        </p>
+        <div class="hero-actions">
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary" href="{% url 'dashboard' %}">Ouvrir mon espace →</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'register' %}">Commencer gratuitement →</a>
+                <a class="btn btn-secondary" href="{% url 'login' %}">Se connecter</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="hero-card">
+        <div class="floating-icon">📚</div>
+        <h3>Campus, simplifié.</h3>
+        <p>Retrouve rapidement les informations dont tu as besoin pour tes études.</p>
+        <div class="mini-stats">
+            <div><strong>01</strong><span>Cours</span></div>
+            <div><strong>02</strong><span>Annonces</span></div>
+            <div><strong>03</strong><span>Planning</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="features section">
+    <div class="section-heading">
+        <span class="eyebrow">CE QUE TU PEUX FAIRE</span>
+        <h2>Un espace pensé pour les étudiants</h2>
+    </div>
+    <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon purple">📚</div><h3>Cours</h3><p>Consulte les matières et retrouve facilement tes ressources.</p></article>
+        <article class="feature-card"><div class="feature-icon blue">📢</div><h3>Annonces</h3><p>Ne rate plus les informations importantes de ton établissement.</p></article>
+        <article class="feature-card"><div class="feature-icon orange">📅</div><h3>Emploi du temps</h3><p>Visualise tes cours et organise ta semaine rapidement.</p></article>
+    </div>
+</section>
+{% endblock %}

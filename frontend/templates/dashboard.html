@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Tableau de bord | Campus Connect{% endblock %}
+{% block content %}
+<section class="dashboard-head">
+    <div>
+        <span class="eyebrow">ESPACE ÉTUDIANT</span>
+        <h1>Bonjour, {{ user.username }} 👋</h1>
+        <p>Voici les informations essentielles de ton campus.</p>
+    </div>
+</section>
+
+<section class="stats-grid">
+    <div class="stat-card purple-bg"><span>📚</span><strong>{{ course_count }}</strong><small>Cours disponibles</small></div>
+    <div class="stat-card blue-bg"><span>📢</span><strong>{{ announcement_count }}</strong><small>Annonces</small></div>
+    <div class="stat-card orange-bg"><span>📅</span><strong>{{ schedule_count }}</strong><small>Cours planifiés</small></div>
+</section>
+
+<section class="dashboard-grid">
+    <div class="panel">
+        <div class="panel-title"><h2>Accès rapide</h2></div>
+        <div class="quick-links">
+            <a href="{% url 'courses' %}"><span>📚</span><div><strong>Mes cours</strong><small>Voir les matières disponibles</small></div><b>→</b></a>
+            <a href="{% url 'announcements' %}"><span>📢</span><div><strong>Annonces</strong><small>Informations de l'université</small></div><b>→</b></a>
+            <a href="{% url 'schedule' %}"><span>📅</span><div><strong>Emploi du temps</strong><small>Organiser ma semaine</small></div><b>→</b></a>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><h2>Dernières annonces</h2><a href="{% url 'announcements' %}">Tout voir</a></div>
+        {% for item in latest_announcements %}
+            <div class="announcement-preview">
+                <div class="dot {% if item.important %}important{% endif %}"></div>
+                <div><strong>{{ item.title }}</strong><p>{{ item.content|truncatechars:100 }}</p></div>
+            </div>
+        {% empty %}
+            <p class="empty">Aucune annonce pour le moment.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

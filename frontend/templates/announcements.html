@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Annonces | Campus Connect{% endblock %}
+{% block content %}
+<section class="page-head">
+    <span class="eyebrow">ACTUALITÉS</span>
+    <h1>Annonces 📢</h1>
+    <p>Les informations importantes de ton établissement.</p>
+</section>
+<section class="announcement-list">
+{% for item in announcements %}
+    <article class="announcement-card {% if item.important %}is-important{% endif %}">
+        <div class="announcement-top">
+            <span class="badge">{% if item.important %}IMPORTANT{% else %}INFO{% endif %}</span>
+            <time>{{ item.created_at|date:"d/m/Y" }}</time>
+        </div>
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.content }}</p>
+    </article>
+{% empty %}
+    <div class="empty-card">Aucune annonce pour le moment.</div>
+{% endfor %}
+</section>
+{% endblock %}
