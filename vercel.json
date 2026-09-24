@@ -3,14 +3,14 @@
     "builds": [
         {
             "src":"campus-connect/wsgi.py",
-            "user":"@vercel/python",
+            "use":"@vercel/python",
             "config":{ "maxLambdaSize": "15mb", "runtime": "python3.12"}
         }
     ],
     "routes": [
         {
             "src":"/(.*)",
-            "src":"campus-connect/wsgi.py",
+            "dest":"campus-connect/wsgi.py"
         }
     ]
 }
