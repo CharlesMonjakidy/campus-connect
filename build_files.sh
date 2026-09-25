@@ -1,0 +1,3 @@
+echo"Building project........"
+python -m pip install -r requirements.txt
+python manage.py collectsatic --noinput --clear
